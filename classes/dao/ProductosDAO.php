@@ -2,6 +2,7 @@
 //creando clase ProductosDAO - la clase DAO solo hace la consulta y devuelve la lista de objetos 
 class ProductosDAO {
 	
+	//creando metodo listar
 	public static function listar (){
 		
 		//llamamos a la clase conexion. Crea o utiliza la que ya existe
@@ -24,9 +25,36 @@ class ProductosDAO {
 		
 		//retornamos lista
 		return $lista ;
+		
+		//agregar 'producto' en el fetchObject solosi se a creado la class producto en Producto.php (solo para personalizar y crear eventos)
 	}
+	
+	//creando metodo registar para un nuevo ingreso
+	//se debe definir $producto, es el elemento que se definio en el foreach de productos-listar para nombrar al objeto
+	public static function registrar($producto) {
+        
+        $con = Conexion::getConexion();
+        
+		//los values ingresar como parametro no como cadena o numero, con dos puntos antes del nombre del isert into
+        $sql = "insert into productos (categorias_id, nombre, descripcion, precio, stock)
+                values (:categorias_id, :nombre, :descripcion, :precio, :stock)";
+        
+        $stmt = $con->prepare($sql);
+		
+        $stmt->bindParam(':categorias_id', $producto->categorias_id);
+        $stmt->bindParam(':nombre', $producto->nombre);
+        $stmt->bindParam(':descripcion', $producto->descripcion);
+        $stmt->bindParam(':precio', $producto->precio);
+        $stmt->bindParam(':stock', $producto->stock);
+                
+        $stmt->execute();
+        
+    }
+	
+	
+
 }
 
-//agregar 'producto' en el fetchObject solosi se a creado la class producto en Producto.php (solo para personalizar y crear eventos)
+
 		
 	

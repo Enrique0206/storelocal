@@ -8,6 +8,24 @@ require_once '../dto/Producto.php'; //se agrego cuano se creo la class producto 
 
 //para mostrar la lista de objetos que recuperamos en ProductosDAO.php
 //a la $lista del clase ProductosDAO llamamos (::) al metodo listar
-$lista = ProductosDAO::listar();
+/*$lista = ProductosDAO::listar();
 
-var_dump($lista);
+var_dump($lista);*/
+
+
+//haremos el test para validar el ingreso de objetos
+//hacemos la instancia de la clase Producto
+$producto = new Producto();
+//Al objeto producto creado, le asignamos un valor sobre el atributo indicado
+$producto->categorias_id = 1;
+$producto->nombre = 'Maxtor';
+$producto->descripcion = 'Descripcion de maxtor...';
+$producto->precio = 200.90;
+$producto->stock = 12;
+//ojo que no hemos definido atributos al creal la clase producto (Productos.php)
+//php nos permite definir los atributos en caliente. Por esa razon esque la estamos definiendo por este lugar.
+
+//todos estos datos encapsulados en un objeto lo pasamos hacia la class ProductoDAO mediante el metodo registrar
+ProductosDAO::registrar($producto);
+
+echo 'producto registrado';

@@ -162,7 +162,7 @@ $lista = ProductosDAO::listar();
 <?php foreach ($lista as $producto){ ?>
 <?php } ?>
 </tbody>
-se hace un foreach (recorrido) de la $lista y cada elemento se representara en una variable $producto (puede ser cualquier nombre, no necesariamente producto)
+se hace un foreach (recorrido) de la $lista y cada elemento se representara en una variable $producto (puede ser cualquier nombre, no necesariamente producto, pero igual que la clase creada para personalizar los eventos)
 luego llamamos al objeto de esa variable producto mediante una flecha
 <?=$producto->id?> por ejemplo el id.
 -->
