@@ -1,3 +1,13 @@
+<?php 
+//usaremos autoload una vez creado este archivo
+require_once './autoload.php';
+
+//una ves listada los elementos de la lista, inyectaremos los objetos en el html mediante el php
+//en la lista categorias
+$lista = CategoriasDAO::listar(); //si por error se escribe ProductosDAO la lista sera de los productos en el desplegable de categorias
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -105,7 +115,7 @@
 		
         <!--contenedor-->
         <div class="container-fluid">
-            
+            <!--se creara el archivo productos-registrar.php para mostrar la lista ingresada. El enctype es importante para subir archivos-->
             <form action="productos-registrar.php" method="POST" enctype="multipart/form-data">
             
                 <div class="panel panel-default">
@@ -121,6 +131,12 @@
                             <select name="categorias_id" id="categorias_id" class="form-control" required="">
                                 <option value="" selected="" disabled="">Seleccione una categoría</option>
                                 
+								<!--ingresamos como valor el id del elemnto categoria y el nombre de la categoria como la lista a seleccionar-->
+								<?php foreach ($lista as $categoria) { ?>
+								<option value=" <?=$categoria->id?> "><?=$categoria->nombre?></option>
+								<?php } ?>
+								
+								
                             </select>
                         </div>
                         
