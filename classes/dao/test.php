@@ -4,6 +4,7 @@
 require_once '../common/Constantes.php';
 require_once '../common/Conexion.php';
 require_once './ProductosDAo.php';
+require_once '../dto/Producto.php'; //se agrego cuano se creo la class producto en el archivo Producto.php
 
 //para mostrar la lista de objetos que recuperamos en ProductosDAO.php
 //a la $lista del clase ProductosDAO llamamos (::) al metodo listar

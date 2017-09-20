@@ -18,7 +18,7 @@ class ProductosDAO {
 		
 		//recuperamos cada registro en una la lista y la asociamos en un array $registro		
 		$registro = [];
-		while($registro = $stmt->fetchObject()){			
+		while($registro = $stmt->fetchObject('producto')){			
 			$lista []= $registro; // no olvidar colocar el [] para que devuelva todo el array de objetos (toda la lista)
 		}
 		
@@ -26,5 +26,7 @@ class ProductosDAO {
 		return $lista ;
 	}
 }
+
+//agregar 'producto' en el fetchObject solosi se a creado la class producto en Producto.php (solo para personalizar y crear eventos)
 		
 	
