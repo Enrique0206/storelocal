@@ -1,3 +1,17 @@
+<?php 
+//llammso a todas las clases creadas para poder traer toda la lista ($lista)
+require_once './classes/common/Constantes.php';
+require_once './classes/common/Conexion.php';
+require_once './classes/dao/ProductosDAO.php';
+require_once './classes/dto/Producto.php';
+
+//obteniendo cada elemento de la $lista mediante la clases ProductosDAO y el metodo listar
+//para poder llevarlos a la vista en html
+$lista = ProductosDAO::listar();
+
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -98,8 +112,23 @@
                             <th width="50"></th>
                         </tr>
                     </thead>
+					<!--aca se ingresara la informacion de los elementos de la lista extraidos en el php con el metodo listar -->
                     <tbody>
-                   	 		
+                   	<?php foreach ($lista as $producto){ ?>
+						<tr>							
+							<td><?=$producto->id?></td>
+                            <td><?=$producto->categorias_nombre?></td>
+                            <td><?=$producto->nombre?></td>
+                            <td><?=$producto->precio?></td>
+                            <td><?=$producto->imagen?></td>
+							<td><?=$producto->estado?></td>
+                            
+                            <td><a href="" class="btn btn-info">Mostrar</a></td>
+                            <td><a href="" class="btn btn-warning">Editar</a></td>
+                            <td><a href="" class="btn btn-danger">Eliminar</a></td>
+						</tr>
+						
+					<?php } ?>
                     </tbody>
                 </table>
             
@@ -121,3 +150,19 @@
         <!--pie de pagina-->
     </body>
 </html>
+
+
+<!--insertando objetos en un bloque php
+<tbody>
+<?php { ?>
+<?php } ?>
+</tbody>
+
+<tbody>
+<?php foreach ($lista as $producto){ ?>
+<?php } ?>
+</tbody>
+se hace un foreach (recorrido) de la $lista y cada elemento se representara en una variable $producto (puede ser cualquier nombre, no necesariamente producto)
+luego llamamos al objeto de esa variable producto mediante una flecha
+<?=$producto->id?> por ejemplo el id.
+-->
