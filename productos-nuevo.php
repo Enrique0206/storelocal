@@ -1,25 +1,11 @@
-<?php 
-//llammso a todas las clases creadas para poder traer toda la lista ($lista)
-require_once './classes/common/Constantes.php';
-require_once './classes/common/Conexion.php';
-require_once './classes/dao/ProductosDAO.php';
-require_once './classes/dto/Producto.php';
-
-//obteniendo cada elemento de la $lista mediante la clases ProductosDAO y el metodo listar
-//para poder llevarlos a la vista en html
-$lista = ProductosDAO::listar();
-
-?>
-
-
 <!DOCTYPE html>
 <html>
     <head>
-        <title>storelocal</title>
+		<title>storelocal</title>
 		
-		<meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">	
+		
 		<!--bootstrap css-->
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/> 
@@ -44,11 +30,21 @@ $lista = ProductosDAO::listar();
         <script src="js/bootstrap-datepicker.min.js" type="text/javascript"></script>
         <script src="js/bootstrap-datepicker-locales/bootstrap-datepicker.es.min.js" type="text/javascript"></script>
 		<!--Bootstrap daterpicker-->
+		
+		<!--usaremos el bootstrap swicht y usaremos el jquery como indica el tutorial para modificar el checkbox-->
+		<script>
+			$(function(){
+				$('[name="estado"]').bootstrapSwitch();
+			});
+		</script>
+		<!--se coloca name = "estado" como en el input, en el codigo html lineas abajo-->
+		
+		
     </head>
 	
     <body>
         
-		<!--navegador-->
+        <!--navegador-->
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <!-- logo -->
@@ -105,82 +101,79 @@ $lista = ProductosDAO::listar();
                 
             </div>
         </nav>
-		<!--navegador-->
-        
-		<!--contenedor-->
+		<!--navegador-->		
+		
+        <!--contenedor-->
         <div class="container-fluid">
             
-            <div class="panel panel-default">
-                
-                <div class="panel-heading">
-                    <h3 class="panel-title">Listado de Productos</h3>
-                </div>
+            <form action="productos-registrar.php" method="POST" enctype="multipart/form-data">
             
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>CATEGORÍA</th>
-                            <th>MODELO</th>
-                            <th>PRECIO</th>
-                            <th>IMAGEN</th>
-                            <th>ESTADO</th>
-                            <th width="50"></th>
-                            <th width="50"></th>
-                            <th width="50"></th>
-                        </tr>
-                    </thead>
-					<!--aca se ingresara la informacion de los elementos de la lista extraidos en el php con el metodo listar -->
-                    <tbody>
-                   	<?php foreach ($lista as $producto){ ?>
-						<tr>							
-							<td><?=$producto->id?></td>
-                            <td><?=$producto->categorias_nombre?></td>
-                            <td><?=$producto->nombre?></td>
-                            <td><?=$producto->precio?></td>
-                            <td><?=$producto->imagen?></td>
-							<td><?=$producto->estado?></td>
-                            
-                            <td><a href="" class="btn btn-info">Mostrar</a></td>
-                            <td><a href="" class="btn btn-warning">Editar</a></td>
-                            <td><a href="" class="btn btn-danger">Eliminar</a></td>
-						</tr>
-						
-					<?php } ?>
-                    </tbody>
-                </table>
-            
-                <div class="panel-footer">
-                    <a href="productos-nuevo.php" class="btn btn-primary">Nuevo</a>
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Registro de Productos</h3>
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div class="form-group">
+                            <label for="categorias_id">Categoría</label>
+                            <select name="categorias_id" id="categorias_id" class="form-control" required="">
+                                <option value="" selected="" disabled="">Seleccione una categoría</option>
+                                
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" class="form-control" required="" maxlength="100" placeholder="Ingrese el nombre">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="precio">Precio</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">S/.</div>
+                                <input type="number" id="precio" name="precio" class="form-control" placeholder="Ingrese el precio">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="stock">Stock</label>
+                            <input type="number" id="stock" name="stock" class="form-control" min="0" max="1000" placeholder="Ingrese el nombre">
+                        </div>
+                        
+                        <div class="form-group"><!--se agrega la palabra ckeditor a la classs form control para convertirlo en un editor de texto-->
+                            <label for="descripcion">Descripción</label>
+                            <textarea id="descripcion" name="descripcion" class="form-control ckeditor"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="imagen">Imagen</label>
+                            <input type="file" id="imagen" name="imagen" class="form-control">
+                        </div>
+                        
+                        <input type="checkbox" name="estado" data-on-text="Activo" data-off-text="Inactivo" value="1" checked="">
+
+                    </div>
+
+                    <div class="panel-footer">
+                        <input type="submit" value="Registrar" class="btn btn-primary"/>
+                    </div>
+
                 </div>
                 
-            </div>
-                
+            </form>
+            
         </div>
 		<!--contenedor-->
         
-		<!--pie de pagina-->
+        <!--pie de pagina-->
         <footer class="footer">
             <div class="container-fluid">
                 <p class="text-muted text-center">Lima, Tecsup.</p>
             </div>
         </footer>
         <!--pie de pagina-->
+        
     </body>
 </html>
-
-
-<!--insertando objetos en un bloque php
-<tbody>
-<?php { ?>
-<?php } ?>
-</tbody>
-
-<tbody>
-<?php foreach ($lista as $producto){ ?>
-<?php } ?>
-</tbody>
-se hace un foreach (recorrido) de la $lista y cada elemento se representara en una variable $producto (puede ser cualquier nombre, no necesariamente producto, pero igual que la clase creada para personalizar los eventos)
-luego llamamos al objeto de esa variable producto mediante una flecha
-<?=$producto->id?> por ejemplo el id.
--->
