@@ -111,7 +111,15 @@ $lista = CategoriasDAO::listar(); //si por error se escribe ProductosDAO la list
                 
             </div>
         </nav>
-		<!--navegador-->		
+		<!--navegador-->
+		
+		<!--bloque de alertas-->
+		<!--llamamos a la clase Flash y al metodo show para mostrar el mensaje-->
+		<div class="container-fluid"><?= Flash::show() ?></div>
+		<!--bloque de alertas-->
+		
+		
+		
 		
         <!--contenedor-->
         <div class="container-fluid">

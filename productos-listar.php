@@ -1,9 +1,11 @@
 <?php 
 //llammso a todas las clases creadas para poder traer toda la lista ($lista)
-require_once './classes/common/Constantes.php';
+/*require_once './classes/common/Constantes.php';
 require_once './classes/common/Conexion.php';
 require_once './classes/dao/ProductosDAO.php';
-require_once './classes/dto/Producto.php';
+require_once './classes/dto/Producto.php';*/
+
+require_once './autoload.php'; //usaremos autoload
 
 //obteniendo cada elemento de la $lista mediante la clases ProductosDAO y el metodo listar
 //para poder llevarlos a la vista en html
@@ -106,6 +108,13 @@ $lista = ProductosDAO::listar();
             </div>
         </nav>
 		<!--navegador-->
+		
+		
+		<!--bloque de alertas-->
+		<!--llamamos a la clase Flash y al metodo show para mostrar el mensaje-->
+		<div class="container-fluid"><?= Flash::show() ?></div>
+		<!--bloque de alertas-->
+		
         
 		<!--contenedor-->
         <div class="container-fluid">

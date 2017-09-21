@@ -37,7 +37,7 @@ try{
         if (!file_exists(Constantes::RUTA_IMAGENES)) {
             mkdir(Constantes::RUTA_IMAGENES, 0777, true); 
         }
-        //movemos el archivo cargado en el archivo temporal (tmp) hacia la constante RUTAS_MAGENES (ver constantes, clases common)
+        //movemos el archivo cargado en la ruta temporal (tmp_name) hacia la constante RUTAS_MAGENES (ver constantes, clases common)
 		//podemo cambiarle de carpeta. ver classes common archivo cosntantes. Y con $_FILES['imagen']['name'] definimos el nombe del archivo.
 		//entonces se define la ruta y el nombre del archivo
         move_uploaded_file($_FILES['imagen']['tmp_name'], Constantes::RUTA_IMAGENES . $_FILES['imagen']['name']);
@@ -45,6 +45,7 @@ try{
     
     ProductosDAO::registrar($producto);
     
+	//se ingresa codigo php para la visualizacion del mensaje despues del bloque navegador ver coemntarios de ubicacion
     Flash::success('Registro guardado satisfactoriamente');
     
     // el header nos redireccionara al lugar que le designemos, en este caso a la tabla de la lista para evitar reenviar el registro y se duplique el almacenamiento

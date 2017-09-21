@@ -46,6 +46,7 @@ class Flash {
         }
     }
     
+	//despues e mostrar los mensajes el unset los borra
     
     
 }
