@@ -41,6 +41,11 @@ $lista = CategoriasDAO::listar(); //si por error se escribe ProductosDAO la list
         <script src="js/bootstrap-datepicker-locales/bootstrap-datepicker.es.min.js" type="text/javascript"></script>
 		<!--Bootstrap daterpicker-->
 		
+		<!--colorbox-->
+		<link href="css/colorbox.css" rel="stylesheet" type="text/css"/>
+		<script src="js/jquery.colorbox-min.js" type="text/javascript"></script>
+		<!--colorbox-->
+		
 		<!--usaremos el bootstrap swicht y usaremos el jquery como indica el tutorial para modificar el checkbox-->
 		<script>
 			$(function(){

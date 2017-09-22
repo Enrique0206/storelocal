@@ -46,6 +46,22 @@ $lista = ProductosDAO::listar();
         <script src="js/bootstrap-datepicker.min.js" type="text/javascript"></script>
         <script src="js/bootstrap-datepicker-locales/bootstrap-datepicker.es.min.js" type="text/javascript"></script>
 		<!--Bootstrap daterpicker-->
+		
+		<!--colorbox-->
+		<link href="css/colorbox.css" rel="stylesheet" type="text/css"/>
+		<script src="js/jquery.colorbox-min.js" type="text/javascript"></script>
+		<!--colorbox-->
+		
+		<!--Adicionando el jquery para el colorbox-->
+		<script>
+			$(function(){
+				$('a.colorbox').colorbox({
+					photo: true	
+				});				
+			});		
+		</script>
+		<!--Adicionando el jquery para el colorbox-->	
+		
     </head>
 	
     <body>
@@ -149,8 +165,9 @@ $lista = ProductosDAO::listar();
                             <td><?=$producto->precio?></td>
                             <!--<td><?=$producto->imagen?></td>-->
 							<!--enlazo la imagen paa que aparezca en la lista  y le agrego ?id= (get) para que me traiga el id progrmamado
-							pero el id que yo quiero es <?=$producto->id?>-->
-							<td><img src="productos-imagen.php?id=<?=$producto->id?>" height="32"/></td>
+							pero el id que yo quiero es <?=$producto->id?>
+							luego agregamos un enlace con la misma ruta de la imagen ademas agregando la clase colorbox y el jquery en el bloque head-->
+							<td><a href="productos-imagen.php?id=<?=$producto->id?>" class="colorbox"><img src="productos-imagen.php?id=<?=$producto->id?>" height="32"/></a></td>
 							<td><?=$producto->estado?></td>
                             
                             <td><a href="" class="btn btn-info">Mostrar</a></td>
