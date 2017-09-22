@@ -168,11 +168,14 @@ $lista = ProductosDAO::listar();
 							pero el id que yo quiero es <?=$producto->id?>
 							luego agregamos un enlace con la misma ruta de la imagen ademas agregando la clase colorbox y el jquery en el bloque head-->
 							<td><a href="productos-imagen.php?id=<?=$producto->id?>" class="colorbox"><img src="productos-imagen.php?id=<?=$producto->id?>" height="32"/></a></td>
-							<td><?=$producto->estado?></td>
+							<!--cambiar el estado en un boton-->
+							<td><a href="productos-estado.php?id=<?=$producto->id?>&estado=<?=($producto->estado==1)?0:1?>" class="btn btn-<?=($producto->estado==1)?'success':'default'?>"><?=$producto->getEstado()?></a></td>
                             
                             <td><a href="" class="btn btn-info">Mostrar</a></td>
+							
                             <td><a href="" class="btn btn-warning">Editar</a></td>
-                            <td><a href="" class="btn btn-danger">Eliminar</a></td>
+						
+                            <td><a href="productos-eliminar.php?id=<?=$producto->id?>" class="btn btn-danger"><i class="fa fa-trash"></i> Eliminar</a></td>
 						</tr>
 						
 					<?php } ?>

@@ -80,6 +80,33 @@ class ProductosDAO {
 		      
     }
 	
+	//cambiar estado y definiendo sus parametros
+	public static function cambiarEstado($id, $estado) {
+        
+        $con = Conexion::getConexion();
+        //ingresar con parametos, no con valores
+        $sql = "update productos set estado=:estado where id = :id"; // se probo el sql en el mysql
+        
+        $stmt = $con->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':estado', $estado);
+        $stmt->execute();
+        //aca termina todo, solo es una actualizacion
+    }
+	
+	//eliminar producto
+	public static function eliminar($id) {
+        
+        $con = Conexion::getConexion();
+        
+        $sql = "delete from productos where id = :id";
+        
+        $stmt = $con->prepare($sql);
+        $stmt->bindParam(':id', $id);     
+        $stmt->execute();
+        
+    }
+	
 	
 
 }
