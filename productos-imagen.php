@@ -2,10 +2,10 @@
 require_once './autoload.php';
 try {
     
-    //$id = $_GET['id'];//obtener el id seleccionado
-    $id = 10;
+    $id = $_GET['id'];//obtener el id seleccionado 
+	
     $producto = ProductosDAO::obtener($id);
-    //este file va aestar constituido por la constante que tiene la ruta y se aplicar el metodo y funcion sobre imagen
+    //este file va a estar constituido por la constante que tiene la ruta y se aplicar el metodo y funcion sobre imagen
     $filename = Constantes::RUTA_IMAGENES . $producto->imagen;
     
     header("Content-type: ".$producto->imagen_tipo);

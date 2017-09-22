@@ -147,7 +147,10 @@ $lista = ProductosDAO::listar();
                             <td><?=$producto->categorias_nombre?></td>
                             <td><?=$producto->nombre?></td>
                             <td><?=$producto->precio?></td>
-                            <td><?=$producto->imagen?></td>
+                            <!--<td><?=$producto->imagen?></td>-->
+							<!--enlazo la imagen paa que aparezca en la lista  y le agrego ?id= (get) para que me traiga el id progrmamado
+							pero el id que yo quiero es <?=$producto->id?>-->
+							<td><img src="productos-imagen.php?id=<?=$producto->id?>" height="32"/></td>
 							<td><?=$producto->estado?></td>
                             
                             <td><a href="" class="btn btn-info">Mostrar</a></td>
