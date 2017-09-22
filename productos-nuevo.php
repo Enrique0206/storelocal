@@ -44,7 +44,13 @@ $lista = CategoriasDAO::listar(); //si por error se escribe ProductosDAO la list
 		<!--colorbox-->
 		<link href="css/colorbox.css" rel="stylesheet" type="text/css"/>
 		<script src="js/jquery.colorbox-min.js" type="text/javascript"></script>
+		
 		<!--colorbox-->
+		<script src="js/bootbox.min.js" type="text/javascript"></script>
+		<!--bootbox-->
+		
+		
+		
 		
 		<!--usaremos el bootstrap swicht y usaremos el jquery como indica el tutorial para modificar el checkbox-->
 		<script>

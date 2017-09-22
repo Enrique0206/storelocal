@@ -52,13 +52,30 @@ $lista = ProductosDAO::listar();
 		<script src="js/jquery.colorbox-min.js" type="text/javascript"></script>
 		<!--colorbox-->
 		
+		<!--colorbox-->
+		<script src="js/bootbox.min.js" type="text/javascript"></script>
+		<!--bootbox-->
+				
+		
 		<!--Adicionando el jquery para el colorbox-->
 		<script>
 			$(function(){
 				$('a.colorbox').colorbox({
 					photo: true	
 				});				
-			});		
+			});	
+			
+		//usando el bootbox
+			function eliminar(id)			{
+			bootbox.confirm('Realmente desea eliminar?', function(isOK){
+				if(isOK){
+					window.location.href = 'productos-eliminar.php?id='+id;
+				}
+				
+				});
+			}		
+			
+			
 		</script>
 		<!--Adicionando el jquery para el colorbox-->	
 		
@@ -171,11 +188,11 @@ $lista = ProductosDAO::listar();
 							<!--cambiar el estado en un boton-->
 							<td><a href="productos-estado.php?id=<?=$producto->id?>&estado=<?=($producto->estado==1)?0:1?>" class="btn btn-<?=($producto->estado==1)?'success':'default'?>"><?=$producto->getEstado()?></a></td>
                             
-                            <td><a href="" class="btn btn-info">Mostrar</a></td>
+                            <td><a href="" class="btn btn-info"><i class="fa fa-search"></i>Mostrar</a></td>
 							
-                            <td><a href="" class="btn btn-warning">Editar</a></td>
-						
-                            <td><a href="productos-eliminar.php?id=<?=$producto->id?>" class="btn btn-danger"><i class="fa fa-trash"></i> Eliminar</a></td>
+                            <td><a href="" class="btn btn-warning"><i class="fa fa-edit"></i>Editar</a></td>
+						<!--el metodo javascript:void(0) lo que hace es no redireccion a ningun enlace -->
+							<td><a href="javascript:void(0)"  onclick="eliminar(<?=$producto->id?>)"class="btn btn-danger"><i class="fa fa-trash"></i> Eliminar</a></td>
 						</tr>
 						
 					<?php } ?>
