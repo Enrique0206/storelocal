@@ -34,7 +34,11 @@ echo 'producto registrado';*/
 
 
 //llamando a la lista de la base de datos
-$lista = CategoriasDAO::listar();
+/*$lista = CategoriasDAO::listar()
+var_dump($lista);*/
 
-var_dump($lista);
 
+//testeando productos obtener
+$producto = ProductosDAO::obtener(8);
+
+var_dump($producto);

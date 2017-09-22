@@ -57,6 +57,29 @@ class ProductosDAO {
         
     }
 	
+	public static function obtener($id) {
+        
+        $con = Conexion::getConexion();
+        
+		//los values ingresar como parametro no como cadena o numero, con dos puntos antes del nombre del isert into
+        $sql = "select p.id, p.categorias_id,c.nombre as categorias_nombre, p.nombre, precio, stock, imagen, imagen_tipo, imagen_tamanio, creado, estado
+				from productos p
+				inner join categorias c on c.id=p.categorias_id
+				where p.id = :id"; // la condicion para obtener solo un id
+        
+        $stmt = $con->prepare($sql);	
+		
+        $stmt->bindParam(':id', $id);      
+                
+        $stmt->execute();
+		
+		//si existe regirstro retornara el primero sino es asi retornara nulo
+		if($registro = $stmt->fetchObject('Producto')){			
+			return $registro;			
+		}
+		      
+    }
+	
 	
 
 }
