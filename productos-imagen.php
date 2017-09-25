@@ -1,5 +1,7 @@
 <?php
 require_once './autoload.php';
+
+
 try {
     
     $id = $_GET['id'];//obtener el id seleccionado 

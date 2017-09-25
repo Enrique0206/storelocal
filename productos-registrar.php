@@ -8,6 +8,9 @@
 
 require_once './autoload.php';
 
+//aca se restringe el acceso. Solo se permite al hacer login 
+	require_once './includes/security.php';
+
 try{
     //si no existe el pos categoria_id o esta vacio entonces mostrar el die
     if(!isset($_POST['categorias_id']) || $_POST['categorias_id'] == '')

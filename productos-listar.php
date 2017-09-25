@@ -6,6 +6,9 @@ require_once './classes/dao/ProductosDAO.php';
 require_once './classes/dto/Producto.php';*/
 
 require_once './autoload.php'; //usaremos autoload
+//
+//aca se restringe el acceso. Solo se permite al hacer login 
+require_once './includes/security.php';
 
 //obteniendo cada elemento de la $lista mediante la clases ProductosDAO y el metodo listar
 //para poder llevarlos a la vista en html

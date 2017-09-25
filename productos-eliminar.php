@@ -1,5 +1,9 @@
 <?php
 require_once './autoload.php';
+
+//aca se restringe el acceso. Solo se permite al hacer login 
+	require_once './includes/security.php';
+	
 try {
     
     $id = $_GET['id'];    

@@ -2,6 +2,9 @@
 //usaremos autoload una vez creado este archivo
 require_once './autoload.php';
 
+//aca se restringe el acceso. Solo se permite al hacer login 
+	require_once './includes/security.php';
+
 //una ves listada los elementos de la lista, inyectaremos los objetos en el html mediante el php
 //en la lista categorias
 $lista = CategoriasDAO::listar(); //si por error se escribe ProductosDAO la lista sera de los productos en el desplegable de categorias
