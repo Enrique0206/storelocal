@@ -8,9 +8,9 @@ class Producto {
 //asi personalizamos nuestra clase
 	
 	public function getPrecioAsString() {
-        //$formatter = new NumberFormatter("es-PE", NumberFormatter::CURRENCY);
-       // return $formatter->format($this->precio);
-        return 'S/' . $this->precio;
+        $formatter = new NumberFormatter("es-PE", NumberFormatter::CURRENCY);
+        return $formatter->format($this->precio);
+        //return 'S/' . $this->precio;
     }
 
 	//creando la funcion activo dentro de la clase producto
