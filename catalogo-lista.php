@@ -120,14 +120,16 @@ $productos = ProductosDAO::listar();
                             <img src="productos-imagen.php?id=<?=$producto->id?>" class="img-responsive"/>
                             <h4><?=$producto->nombre?></h4>
                             <p><?=$producto->getPrecioAsString()?></p>
-                            <a href="catalogo-carrito.php?id=<?=$producto->id?>" class="btn btn-primary">comprar</a>          
+                            <a href="catalogo-carrito.php?action=A&id=<?=$producto->id?>" class="btn btn-primary">comprar</a>          
                         </div>
                     </div>
                 </div>
                 <?php } ?>
             </div>
 			 
-			 
+			 <div class="well">
+				 <a href="catalogo-carrito.php?action=v" class="btn btn-info">Ver carrito</a>
+			 </div>
             
             
         </div>

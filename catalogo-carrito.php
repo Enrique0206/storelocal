@@ -1,21 +1,58 @@
 <?php
 require_once './autoload.php';
 
-$id = $_GET['id'];
-$producto = ProductosDAO::obtener($id);
 
-//iniciamos el carrito nueva session
-$carrito = new Carrito();
-if (isset($_SESSION['carrito'])) 	
-	$carrito = $_SESSION['carrito'];
 
-//añadimos un nuevo producto
-$carrito->agregarProducto($producto);
+$action = $_GET['action'];
+switch ($action){
+	case 'A':
+		
+		//recuperamos el producto de la bd
+		$id = $_GET['id'];
+		$producto = ProductosDAO::obtener($id);
 
-//actualizamos el carrito de la sesion
-$_SESSION['carrito'] = $carrito;
+		//iniciamos el carrito nueva session
+		$carrito = new Carrito();
+		if (isset($_SESSION['carrito'])) 	
+			$carrito = $_SESSION['carrito'];
 
-$productos = $carrito->obtenerProductos();
+		//añadimos un nuevo producto
+		$carrito->agregarProducto($producto);
+
+		//actualizamos el carrito de la sesion
+		$_SESSION['carrito'] = $carrito;
+		
+		$productos = $carrito->obtenerProductos();
+		
+		break;
+		
+	case 'v';
+		//iniciamos carrito nueva session
+		$carrito = new Carrito();
+		if(isset($_SESSION['carrito']))
+			$carrito = $_SESSION['carrito'];
+		
+		$productos = $carrito->obtenerProductos();
+		
+		break;
+		
+	case 'R':		
+		//iniciamos carrito nueva session
+		$carrito = new Carrito();
+		if(isset($_SESSION['carrito']))
+			$carrito = $_SESSION['carrito'];
+		
+		$carrito->vacear();
+		
+		$productos = $carrito->obtenerProductos();
+		
+		break;
+		
+	default :
+		break;
+		
+	
+	}
 
 ?>
 
@@ -124,7 +161,12 @@ $productos = $carrito->obtenerProductos();
 		<!--navegador-->
         
          <div class="container-fluid">
-            
+			 
+			 <div class="well">
+				 <a href="catalogo-carrito.php?action=R" class="btn btn-danger">vacear</a>
+			 </div>
+			 
+		
 			 <table class="table">
 				 <thead>
 					<th>ID</th> 
@@ -141,17 +183,20 @@ $productos = $carrito->obtenerProductos();
 					 <?php }?>
 				 </tbody>
 			 </table>
+			 
+			 
             
-          
-            
-            
-        </div>
-        
+		
+		 </div>
+
+				  
         <footer class="footer">
             <div class="container-fluid">
                 <p class="text-muted text-center">Lima, Tecsup <?= date('Y') ?>.</p>
             </div>
         </footer>
+			 
+		 </div>
         
     </body>
 </html>

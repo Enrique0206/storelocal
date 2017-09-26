@@ -15,4 +15,8 @@ class Carrito{
 	public function obtenerProductos(){
 		return $this->lista;
 	}
+	
+	public function vacear(){
+		$this->lista = [];		
+	}
 }
